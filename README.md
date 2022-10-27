@@ -3,4 +3,14 @@
 
 > typed lambda calculus + pattern matching macros == any language you like
 
-A simple scheme-like toy language.
+A simple toy language.
+
+## demos
+### simple typed lambda calclus
+```
+lambda {
+  x = false
+  not = (x: bool) => if (x) false else true
+  y = not(x)
+}
+```

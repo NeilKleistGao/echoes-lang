@@ -18,6 +18,6 @@ jobs:
       with:
         java-version: 1.8
     - name: Run tests
-      run: sbt testOnly echoes.LexerTest
+      run: sbt "testOnly echoes.LexerTest"
     - name: Check no changes
       run: git diff-files -p --exit-code --diff-filter=ADMR -w

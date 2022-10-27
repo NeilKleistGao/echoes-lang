@@ -9,8 +9,8 @@ A simple toy language.
 ### simple typed lambda calclus
 ```
 lambda {
-  x = false
-  not = (x: bool) => if (x) false else true
-  y = not(x)
+  x = false;
+  not = (x: bool) => if (x) false else true;
+  y = not(x);
 }
 ```

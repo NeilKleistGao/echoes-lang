@@ -24,14 +24,18 @@ sealed abstract class Token {
 }
 
 
-final case class Punctuation(op: String) extends Token
+final case class Punctuation(op: Char) extends Token
 object Punctuation {
-  val punctuations = List("=", "{", "}", "(", ")", "=>", ";")
+  val punctuations = List('=', '{', '}', '(', ')', '>', '<', '=', ';')
+
+  def isPunctuation(ch: Char) = punctuations.contains(ch)
 }
 
 final case class Keyword(name: String) extends Token
 object Keyword {
   val keywords = List("lambda", "if", "else", "bool", "int")
+
+  def isKeyword(str: String) = keywords.contains(str)
 }
 
 final case class Identifier(name: String) extends Token
@@ -42,6 +46,14 @@ final case class IntLiteral(value: Int) extends LiteralValue {
   override def toString(): String = value.toString()
 }
 
+object IntLiteral {
+  def isNumber(ch: Char) = "1234567890".contains(ch)
+}
+
 final case class BoolLiteral(value: Boolean) extends LiteralValue {
   override def toString(): String = value.toString()
+}
+
+object BoolLiteral {
+  def isBool(str: String) = str.equals("true") || str.equals("false")
 }

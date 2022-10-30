@@ -44,3 +44,11 @@ object SourceFile {
     }
   }
 }
+
+class Location(line: Int, begin: Int, end: Int)
+object Location {
+  def apply(line: Int, begin: Int, end: Int) =
+    new Location(line, begin, end)
+
+  val EmptyLocation = Location(0, 0, 0)
+}

@@ -26,7 +26,7 @@ sealed abstract class Token {
 
 final case class Punctuation(op: Char) extends Token
 object Punctuation {
-  val punctuations = List('=', '{', '}', '(', ')', '>', '<', '=', ';')
+  val punctuations = List('=', '{', '}', '(', ')', '>', '<', '=', ';', ':')
 
   def isPunctuation(ch: Char) = punctuations.contains(ch)
 }

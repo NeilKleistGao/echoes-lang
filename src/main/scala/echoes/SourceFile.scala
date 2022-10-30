@@ -22,24 +22,14 @@ abstract class SourceFile(val path: String) {
 
 object SourceFile {
   def apply(path: String) = new SourceFile(path) {
-    import java.io.{BufferedReader, FileReader, IOException}
-
     override def readContent: Either[String, String] = {
-      val reader =
-        try { new BufferedReader(new FileReader(path)) }
-        catch {
-          case e: IOException => null
-        }
-
-      if (reader == null) Right(s"can't open the file $path")
-      else {
-        def read(reader: BufferedReader, prev: String): String = {
-          val line = reader.readLine()
-          if (line == null) prev
-          else read(reader, s"$prev$line\n")
-        }
-
-        Left(read(reader, ""))
+      try {
+        val source = scala.io.Source.fromFile(path, "UTF-8")
+        val lines = source.getLines()
+        Left(lines.foldLeft("")((res, line) => res + line + "\n"))
+      }
+      catch {
+        case _: Throwable => Right(s"can't open the file $path")
       }
     }
   }
